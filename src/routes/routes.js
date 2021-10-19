@@ -10,17 +10,21 @@ const { getUser } =  require('../controllers/userController');
 
 const { addProductCategory, getAllCategory } =  require('../controllers/productCategoryController');
 
+const { createProduct, allProducts } = require('../controllers/productController');
+
 router.post('/', signUp);
 
 router.get('/', signIn);
 
 router.post('/product/category', validateToken, validateSupervisor, addProductCategory);
 
-router.get('/products', validateToken, validateSupervisor, getAllCategory);
+router.get('/categories', validateToken, validateSupervisor, getAllCategory);
 
-router.get('/user', validateToken, validateSupervisor, getUser)
+router.get('/user', validateToken, validateSupervisor, getUser);
 
-router.post('/product', )
+router.post('/product/create', validateToken, validateSupervisor, createProduct);
+
+router.get('/products', validateToken, validateSupervisor, allProducts);
 
 
 

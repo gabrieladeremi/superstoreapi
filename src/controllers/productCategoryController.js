@@ -37,12 +37,11 @@ const getAllCategory = async (req, res) => {
 
         if( !allCategory ) return res.status(404).send(`No Category Found`);
         
-        return res.status(200).send(allCategory);
-
-        
+        return res.status(200).send(allCategory); 
         
     } catch (error) {
         
+        return res.send(error)
     }
 }
 
