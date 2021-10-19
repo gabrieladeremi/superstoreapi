@@ -29,7 +29,25 @@ const addProductCategory = async (req, res) => {
     }
 }
 
+const getAllCategory = async (req, res) => {
+
+    try {
+
+        const allCategory = await ProductCategory.find();
+
+        if( !allCategory ) return res.status(404).send(`No Category Found`);
+        
+        return res.status(200).send(allCategory);
+
+        
+        
+    } catch (error) {
+        
+    }
+}
+
 module.exports = {
 
-    addProductCategory
+    addProductCategory,
+    getAllCategory
 }
