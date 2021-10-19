@@ -2,7 +2,7 @@ const mongoose = require('mongoose')
 
 const Schema = mongoose.Schema;
 
-const ProductSchema = new Schema(
+const productSchema = new Schema(
     {
         name: {
             type: String,
@@ -20,4 +20,4 @@ const ProductSchema = new Schema(
     { timestamps: true }
 );
 
-module.exports = mongoose.model("User", userSchema);
+module.exports = mongoose.model("Product", productSchema);

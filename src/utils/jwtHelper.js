@@ -2,35 +2,42 @@ const jwt = require('jsonwebtoken');
 
 const generateToken = async (payload) => {
 
-    try {
-        const token = await jwt.sign({
-            ...payload,
-          },
-           process.env.JWT_SECRET,
-          { expiresIn: "5h" }
-        );
+  try {
+    const token = await jwt.sign({
+      ...payload,
+      },
+      process.env.JWT_SECRET,
+      { expiresIn: "5h" }
+    );
     
-        return token;
+    return token;
 
-    } catch (error) {
+  } catch (error) {
 
-        return error;
+    return error;
 
-    }
+  }
 
 }
 
-exports.jwtVerify = async (token) => {
-    try {
-      const signatory = await jwt.verify(token, process.env.SECRET_KEY);
-      return signatory;
-    } catch (error) {
-      console.log(error);
-      throw new jsonwebtoken.JsonWebTokenError("Error, proceessing Request");
-    }
+const verifyJwt = async (token) => {
+  try {
+    const signatory = await jwt.verify(token, process.env.JWT_SECRET);
+
+    return signatory;
+
+  } catch (error) {
+
+    console.log(error);
+
+    return "Error, proceessing Request";
+
+  }
+
 };
 
 
 module.exports = {
-    generateToken
+  generateToken,
+  verifyJwt
 }
