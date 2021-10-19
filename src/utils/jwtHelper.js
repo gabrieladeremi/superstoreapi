@@ -28,8 +28,6 @@ const verifyJwt = async (token) => {
 
   } catch (error) {
 
-    console.log(error);
-
     return "Error, proceessing Request";
 
   }

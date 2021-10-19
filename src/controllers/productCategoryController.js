@@ -24,8 +24,6 @@ const addProductCategory = async (req, res) => {
 
         
     } catch (error) {
-        
-        console.log(error);
 
         return res.send(error);
     }
