@@ -15,9 +15,10 @@ const signUp = async (req, res) => {
         
         const { firstname, lastname, email, password, role } = req.body;
 
+        
         if ( await User.findOne({ email: email })) {
-
-            return res.json(400).send('User already exist');
+            
+            return res.status(400).json({message: 'User already exist'});
         }
         else {
 
