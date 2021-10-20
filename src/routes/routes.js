@@ -12,6 +12,8 @@ const { addProductCategory, getAllCategory } =  require('../controllers/productC
 
 const { createProduct, allProducts } = require('../controllers/productController');
 
+const { broadcastMail } =  require('../controllers/broadcastMailController');
+
 router.post('/', signUp);
 
 router.get('/', signIn);
@@ -25,6 +27,8 @@ router.get('/user', validateToken, validateSupervisor, getUser);
 router.post('/product/create', validateToken, validateSupervisor, createProduct);
 
 router.get('/products', validateToken, validateSupervisor, allProducts);
+
+router.post('/broadcastmail', validateToken, validateSupervisor, broadcastMail);
 
 
 
