@@ -2,8 +2,8 @@ const { connect } =  require('mongoose');
 
 require("dotenv").config();
 
-const databaseConnection = () => {
-    connect(process.env.MONGODB_URI, {
+const databaseConnection = async () => {
+    await connect(process.env.MONGODB_URI, {
         useNewUrlParser: true,
         useUnifiedTopology: true,
         

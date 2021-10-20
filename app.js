@@ -1,12 +1,12 @@
 var createError = require('http-errors');
 var express = require('express');
 const cors = require("cors");
-const bodyParser = require("body-parser");
 var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 
 const Router = require('./src/routes/routes');
+
 const databaseConnection = require('./src/config/database');
 
 // var indexRouter = require('./routes/index');
@@ -22,8 +22,6 @@ app.set('view engine', 'jade');
 
 app.use(logger('dev'));
 app.use(express.json());
-app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cors({origin: new URL('http://localhost:3000'),credentials: true}));
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
