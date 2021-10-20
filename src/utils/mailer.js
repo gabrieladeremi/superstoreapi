@@ -1,46 +1,38 @@
-const nodeMailer = require('nodemailer');
+const nodemailer = require("nodemailer");
 
+const mailSender = async (messsage, subject, mailingAddresses) => {
+   
+  try {
+    const transporter = nodemailer.createTransport({
 
-const mailSender = async (payload) => { 
+      host: "smtp.gmail.com",
+      port: 465,
+      secure: true,
+  
+      auth: {
+        user: 'gabrieladeremi@gmail.com',
+        pass: '@deR*123*',
+      },
+      tls: {
+        rejectUnauthorized: false,
+      },
+    });
 
-    try {
+    const info = await transporter.sendMail({
+      from: "Gab",
+      to: mailingAddresses,
+      subject: subject,
+      text: messsage
+    });
 
-        const mailTransporter = nodeMailer.createTransport({
-        
-            service: 'smtp.gmail.com',
-            port: 465,
-            secure: true,
-            auth: {
-            
-                user: 'gabrieladeremi@mail.com',
-                pass: '@deR*123*',
+    return `Preview URL: %s', ${nodemailer.getTestMessageUrl(info)}`;
+    
+  } catch (err) {
 
-            },
-            tls: {
-                rejectUnauthorized: false,
-            },
-         });
+    console.log(err)
 
-        const info = await mailTransporter.sendMail({
-        from: "gabrieladeremi@gmail.com",
-        ...payload,
-        }, (error, info) => {
-            if(error){
-                return console.log(error);
-            } else {
-                console.log('Email has been sent');
-                res.send(info);
-            }
-        });
-
-        return `Preview URL: %s', ${nodeMailer.getTestMessageUrl(info)}`;
-
-    } catch (err) {
-
-        console.log(err)
-
-        return (err.message);
-    }
-}
+    return (err.message);
+  }
+};
 
 module.exports = { mailSender }

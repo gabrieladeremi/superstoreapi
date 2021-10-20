@@ -12,16 +12,28 @@ const broadcastMail = async (req, res ) => {
 
         console.log(users);
 
-        let userEmailAddress = users.map(user =>  {return user.email});
+        for (let user of users){
 
-        console.log('user emails', userEmailAddress);
+            const config = {
+                to: user.email,
+                subject: subject,
+                text: message,
+            };
         
-        await mailSender(subject, message, userEmailAddress);
+            const mailResponse = await mailSender(message, subject, user.email);
 
-        return res.status(200).json({
+            if(mailResponse) {
 
-            message: "Mail Sent Successfully",
-        });
+                return res.status(200).json({
+
+                    message: "Mail Sent Successfully",
+                });
+                
+            } else {
+                return res.send('Cannot Send Mail');
+            }
+        }
+           
 
     } catch (error) {
         
