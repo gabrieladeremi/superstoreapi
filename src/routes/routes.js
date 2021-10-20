@@ -2,7 +2,7 @@ const express = require('express');
 
 const router = express.Router();
 
-const { validateToken, validateSupervisor } = require('../middleware/index');
+const { validateToken, validateSupervisor, validateEmployee } = require('../middleware/index');
 
 const { signUp, signIn }  = require('../controllers/authController');
 
@@ -27,6 +27,8 @@ router.get('/user', validateToken, validateSupervisor, getUser);
 router.post('/product/create', validateToken, validateSupervisor, createProduct);
 
 router.get('/products', validateToken, validateSupervisor, allProducts);
+
+router.get('/employee/products', validateToken, validateEmployee, allProducts);
 
 router.post('/broadcastmail', validateToken, validateSupervisor, broadcastMail);
 

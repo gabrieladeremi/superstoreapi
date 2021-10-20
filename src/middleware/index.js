@@ -65,9 +65,35 @@ const validateSupervisor = async (req, res, next) => {
   }
 };
 
+const validateEmployee = async (req, res, next) => {
+  try {
+
+    const { role } = req.decoded;
+
+    console.log(role);
+
+    if (role !== "Employee") {
+
+      return res.status(400).send("You are not authorised to access this route");
+
+    } 
+    else {
+
+      next();
+
+    }
+
+  } catch (error) {
+
+    next(error);
+
+  }
+};
+
 module.exports = {
 
-    validateToken,
-    validateSupervisor
+  validateToken,
+  validateSupervisor,
+  validateEmployee
 
 }
