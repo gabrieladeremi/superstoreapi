@@ -4,7 +4,8 @@
   "private": true,
   "scripts": {
     "start": "node ./bin/www",
-    "start-dev": "nodemon src/index"
+    "start-dev": "nodemon src/index",
+    "test": "jest /src/__test__/ "
   },
   "dependencies": {
     "bcryptjs": "^2.4.3",
@@ -24,6 +25,8 @@
     "nodemailer": "^6.7.0"
   },
   "devDependencies": {
-    "nodemon": "^2.0.13"
+    "jest": "^27.3.1",
+    "nodemon": "^2.0.13",
+    "supertest": "^6.1.6"
   }
 }
