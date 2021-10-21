@@ -19,7 +19,7 @@ const addProductCategory = async (req, res) => {
         }
         else {
 
-            return res.status(400).send(`Category already exist`);
+            return res.status(400).json({message: `Category already exist`});
         }
 
         
@@ -40,7 +40,7 @@ const getAllCategory = async (req, res) => {
         return res.status(200).send(allCategory); 
         
     } catch (error) {
-        
+
         return res.send(error)
     }
 }
